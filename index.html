@@ -26,7 +26,8 @@
 		                .append($("<div />").attr("class", "dropdown").attr("id","propsChosen")))
 		        .append(
 		            $("<div />").attr("class", "people")
-		                .append($("<div />").attr("class", "dropdown").attr("id","selector"))
+		                .append($("<div />").attr("class", "dropdown").text("Selector:"))
+		                .append($('<input type="text" id="selector">').attr("class", "dropdown").attr("id","selector"))
 		          )
 		        .append(
 		            $("<div />").attr("class", "submit")
@@ -39,7 +40,6 @@
 		    exp.headers = [];
 		    exp.csvMax = Math.pow(10, 6) * 2;
 		    exp.$download = $("button");
-		    exp.$selector = $('<textarea rows="1" cols="50"/>');
 		    exp.$listSelect = $('<select class="proplist" size="10"/>');
 		    exp.$listChosen = $('<select class="proplist" size="10"/>');
 		    exp.$include = $('<button id="include" class="listbutton button"/>').text('add');
@@ -142,8 +142,8 @@
 		            if (whereProps.length > 0) {
 		                var selector = whereProps.join(" or ");
 		            }
-		            if ($("#myTextArea").val()) {
-                    // textarea is empty
+		            if ($("#selector").val()) {
+		                selector = $("#selector").val();
                 }
 		            exp.csv = encodeURI("data:text/csv;charset=utf-8," + encodeURI(exp.headers.join()));
 		            PeoplePager(exp.processUser, selector, exp.finishProcessing);
